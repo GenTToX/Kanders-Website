@@ -28,34 +28,42 @@ USE `Kanders`;
 -- Tabellenstruktur für Tabelle `accounts`
 --
 
-CREATE TABLE `accounts` (
-  `account_ID` int NOT NULL AUTO_INCREMENT,
-  `Vorname` varchar(40) NOT NULL,
+CREATE TABLE `Mitglied` (
+  `MITG_ID` int NOT NULL AUTO_INCREMENT,
+  `Username` varchar(40) NOT NULL,
+  `Vorname` varchar(40) DEFAULT NULL,
   `Passwort` varchar(40) NOT NULL,
   `Nachname` varchar(40) DEFAULT NULL,
   `E-Mail` varchar(40) DEFAULT NULL,
   `Geburtsdatum` DATE DEFAULT NULL,
   `Geschlecht` varchar(40) DEFAULT NULL,
   `Telefonnummer` int DEFAULT NULL,
-  `Adresse` varchar(40) DEFAULT NULL,
-  PRIMARY KEY (`account_ID`)
+  `Strasse` varchar(40) DEFAULT NULL,
+  `Hausummer` int DEFAULT NULL,
+  `Ort` varchar(40) DEFAULT NULL,
+  `PLZ` int DEFAULT NULL,
+-- FOREIGN KEY
+  `ROLL_ID` int NOT NULL,
+
+  PRIMARY KEY (`MITG_ID`)
 );
 
 --
 --
 --
 
-INSERT INTO `accounts` (`Vorname`, `Nachname`, `Passwort`, `Geburtsdatum`, `Geschlecht`) VALUES
-('Maximilian', 'Bich', '916', '2006-02-09', 'Männlich');
+INSERT INTO `Mitglied` (`Username`, `Vorname`, `Nachname`, `Passwort`, `Geburtsdatum`, `Geschlecht`, `ROLL_ID`) VALUES
+(`Maxinum916`, 'Maximilian', 'Bich', '916', '2006-02-09', 'Männlich', 1);
 
 --
 --
 --
 
 CREATE TABLE `Rolle` (
-  `R_ID` int NOT NULL AUTO_INCREMENT,
+  `ROLL_ID` int NOT NULL AUTO_INCREMENT,
   `Bezeichnung` varchar(40) NOT NULL,
-  PRIMARY KEY (`R_ID`)
+
+  PRIMARY KEY (`ROLL_ID`)
 );
 
 INSERT INTO `Rolle` (`Bezeichnung`) VALUES
@@ -66,31 +74,32 @@ INSERT INTO `Rolle` (`Bezeichnung`) VALUES
 --
 --
 
-CREATE TABLE `Event` (
-  `Event_ID` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `Veranstaltung` (
+  `VERA_ID` int NOT NULL AUTO_INCREMENT,
   `Preis` decimal(5, 2) DEFAULT NULL, 
   `Preis_Typ` int NOT NULL,
-  `Standort` varchar(40) NOT NULL,
-  `Uhrzeit` time NOT NULL,
-  `Datum` DATE NOT NULL,
   `Wochentag` varchar(40) NOT NULL,
-  PRIMARY KEY (`Event_ID`)
+  `Start-Uhrzeit` time NOT NULL,
+  `Start-Datum` DATE NOT NULL,
+ 
+  PRIMARY KEY (`VERA_ID`)
 );
 
-INSERT INTO `Event` (`Preis`, `Preis_Typ`, `Standort`, `Uhrzeit`, `Datum`, `Wochentag`) VALUES
-('', 1, 'Unna', '16:02:00', '2023-09-10', 'Sunday');
+INSERT INTO `Veranstaltung` (`Preis`, `Preis_Typ`, `Wochentag`, `Start-Uhrzeit`, `Start-Datum`) VALUES
+('', 1, 'Sunday', '16:02:00', '2023-09-10');
 
  --
  --
  --
 
- CREATE TABLE `Preis_Typ` (
+ CREATE TABLE `Preis-Typ` (
   `PRTP_ID` int NOT NULL AUTO_INCREMENT,
   `Bezeichnung` varchar(40),
+
   PRIMARY KEY (`PRTP_ID`)
 );
 
-INSERT INTO `Preis_Typ` (`Bezeichnung`) VALUES
+INSERT INTO `Preis-Typ` (`Bezeichnung`) VALUES
 ('Normal'),
 ('Hutaktion');
 
@@ -98,72 +107,117 @@ INSERT INTO `Preis_Typ` (`Bezeichnung`) VALUES
 --
 --
 
-CREATE TABLE `Ort` (
-  `Ort_ID` int NOT NULL AUTO_INCREMENT,
-  `Name` varchar(40) NOT NULL,
-  `PLZ` int DEFAULT NULL,
-  PRIMARY KEY (`Ort_ID`)
+CREATE TABLE `Veranstaltungs-Typ` (
+ `VETP_ID` int NOT NULL AUTO_INCREMENT,
+  `Bezeichnung` varchar(40),
+
+  PRIMARY KEY (`VETP_ID`)
 );
-
-INSERT INTO `Ort` (`Name`, `PLZ`) VALUES
-('Unna', 59425);
 --
 --
 --
-
 CREATE TABLE `Veranstaltungsort` (
   `VAOT_ID` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(40),
+
   PRIMARY KEY (`VAOT_ID`)
 );
 
 INSERT INTO `Veranstaltungsort` (`Name`) VALUES
 ('Schalander');
---
---
---
-
-/*CREATE TABLE `Festival`(
-`Event_ID` int NOT NULL,
-`Name` varchar(40) NOT NULL,
-`End_Datum` DATE DEFAULT NULL,
-`End_Uhrzeit` time DEFAULT NULL
-)
 
 --
 --
 --
-INSERT INTO `Festival`(`Name`)
+
+CREATE TABLE `Stadt` (
+  `STDT_ID` int NOT NULL AUTO_INCREMENT,
+  `Name` varchar(40) NOT NULL,
+
+  PRIMARY KEY (`Ort_ID`)
+);
+
+
+
+INSERT INTO `Ort` (`Name`) VALUES
+('Unna');
+
 
 
 --
 --
 --
-ALTER TABLE `Festival`
-  ADD FOREIGN KEY (Event_ID) REFERENCES `Event` (Event_ID);
 
-CREATE TABLE `Konzert`(
- `Event_ID` int NOT NULL,
+CREATE TABLE `Stadtteil`(
+  `STTL_ID` int NOT NULL AUTO_INCREMENT,
+  `Name` varchar(40) DEFAULT NULL,
+  `PLZ` int DEFAULT NULL,
 
-)
-ALTER TABLE `Konzert`  
-ADD FOREIGN KEY (Event_ID) REFERENCES `Event` (Event_ID); */
+  PRIMARY KEY(`STTL_ID`)
+);
+
+--
+--
+--
+
+CREATE TABLE `Region`(
+  `REGI_ID` int NOT NULL AUTO_INCREMENT,
+  `Name` varchar(40) DEFAULT NULL,
+
+  PRIMARY KEY(`REGI_ID`)
+);
+
+--
+--
+--
+
+CREATE TABLE `Bundesland`(
+    `BULA_ID` int NOT NULL AUTO_INCREMENT,
+    `Name` varchar(40),
+
+    PRIMARY KEY(`BULA_ID`)
+);
+
+--
+--
+--
 
 CREATE TABLE `Band` (
   `Band_ID` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(40) NOT NULL,
+
   PRIMARY KEY (`Band_ID`)
 );
 
 INSERT INTO `Band` (`Name`) VALUES
 ('Bring me the Horizon');
+
 --
 --
 --
 
-CREATE TABLE `Mitglieder` (
-  `MITG_ID` int NOT NULL AUTO_INCREMENT,
-  `Name` varchar(40) DEFAULT NULL,
+CREATE TABLE `Konzert`(
+    
+);
+
+--
+--
+--
+
+CREATE TABLE `Festival`(
+    `End-Datum` Date NOT NULL,
+    `Ende-Uhrzeit` time NOT NUll,
+    `Name` varchar(40) NOT NULL,
+);
+
+--
+--
+--
+
+CREATE TABLE `Musiker` (
+  `MUSI_ID` int NOT NULL AUTO_INCREMENT,
+  `Vorname` varchar(40) DEFAULT NULL,
+  `Nachname` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`MITG_ID`)
 );
 
@@ -182,7 +236,15 @@ CREATE TABLE `Song` (
 --
 --
 
+CREATE TABLE `Musik-Richtung`(
+    `MURI_ID` int NOT NULL AUTO_INCREMENT,
+    `Bezeichnung` varchar(40) DEFAULT NULL,
+);
 
 
 
 
+
+-- --------------------------------------------------------------------------------------------
+ALTER TABLE`Mitglied`
+ ADD FOREIGN KEY (ROLL_ID) REFERENCES Rolle(ROLL_ID);
