@@ -95,7 +95,7 @@ CREATE TABLE `Veranstaltung` (
 );
 
 INSERT INTO `Veranstaltung` (`Preis`, `PRTP_ID`, `Wochentag`, `Start-Uhrzeit`, `Start-Datum`, `VETP_ID`, `BULA_ID`, `REGI_ID`, `STTL_ID`, `STDT_ID`, `VAOT_ID`) VALUES
-('', 1, 'Sunday', '16:02:00', '2023-09-10', 0, 0, 0, 0, 0, 0);
+('', 1, 'Sunday', '16:02:00', '2023-09-10', 1, 1, 1, 1, 1, 1);
 
  --
  --
@@ -124,9 +124,12 @@ CREATE TABLE `Veranstaltungs-Typ` (
 );
 
 INSERT INTO `Veranstaltungs-Typ`(`Bezeichnung`) VALUES
-('Veranstaltungs-Tyo')
+('VeranstaltungsTyp');
+
 --
 --
+--
+
 CREATE TABLE `Veranstaltungsort` (
   `VAOT_ID` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(40) DEFAULT NULL,
@@ -134,7 +137,9 @@ CREATE TABLE `Veranstaltungsort` (
   PRIMARY KEY (`VAOT_ID`)
 );
 
-INSERT INTO `Veranstaltungsort` (`Name`) VALUES ('Schalander');
+INSERT INTO `Veranstaltungsort` (`Name`) VALUES 
+('Schalander');
+
 --
 --
 --
@@ -166,7 +171,7 @@ CREATE TABLE `Stadtteil`(
 );
 
 INSERT INTO `Stadtteil` (`Name`, `PLZ`) VALUES
-('Unna', '5425')
+('Unna', '5425');
 
 --
 --
@@ -180,7 +185,7 @@ CREATE TABLE `Region`(
 );
 
 INSERT INTO`Region` (`Name`) VALUES 
-('Keine Ahnung')
+('Keine Ahnung');
 
 --
 --
@@ -195,7 +200,8 @@ CREATE TABLE `Bundesland`(
 
 
 INSERT INTO `Bundesland`(`Name`) VALUES
-('NRW')
+('NRW');
+
 --
 --
 --
@@ -205,23 +211,31 @@ CREATE TABLE `Band` (
   `Name` varchar(40) NOT NULL,
 
   PRIMARY KEY (`BAND_ID`),
+ 
   -- FOREIGN KEY
-  `VERA_ID` int NOT NULL,
+
 
   `MURI_ID` int NOT NULL,
   `MUSI_ID` int NOT NULL,
   `SONG_ID` int NOT NULL
 );
 
-INSERT INTO `Band` (`Name`, `VERA_ID`,  `MURI_ID` ,`MUSI_ID`, `SONG_ID`) VALUES
-('Bring me the Horizon', 0, 0, 0, 0);
+
+
+
+INSERT INTO `Band` (`Name`,  `MURI_ID` ,`MUSI_ID`, `SONG_ID`) VALUES
+('Bring me the Horizon', 1, 1, 1);
 
 --
 --
 --
 
 CREATE TABLE `Konzert`(
-    `VERA_ID` int NOT NULL
+    `VERA_ID` int NOT NULL,
+    PRIMARY key (`VERA_ID`),
+
+    -- ----FOREIGN KEY
+    `BAND_ID` int NOT NULL
 );
 
 --
@@ -232,7 +246,12 @@ CREATE TABLE `Festival`(
     `VERA_ID` int NOT NULL,
     `End-Datum` Date NOT NULL,
     `Ende-Uhrzeit` time NOT NUll,
-    `Name` varchar(40) NOT NULL
+    `Name` varchar(40) NOT NULL,
+    PRIMARY KEY (`VERA_ID`),
+
+    -- --FOREIGN KEY
+    `BAND_ID` int NOT NULL
+
 );
 
 --
@@ -248,18 +267,24 @@ CREATE TABLE `Musiker` (
   `BAND_ID` int NOT NULL
 );
 
+INSERT INTO `Musiker` (`Vorname`, `Nachname`, `BAND_ID`) VALUES
+('Maximilian', 'Bich',1);
+
 --
 --
 --
 
 CREATE TABLE `Song` (
   `SONG_ID` int NOT NULL AUTO_INCREMENT,
-  `Song_Typ` varchar(40),
   `Name` varchar(40),
   PRIMARY KEY (`SONG_ID`),
   -- FOREIGN KEY
   `BAND_ID` int NOT NULL
 );
+
+INSERT INTO `Song` ( `Name`, `BAND_ID`) VALUES
+( 'Bad Habbit', 1);
+
 
 --
 --
@@ -273,85 +298,13 @@ CREATE TABLE `Musik-Richtung`(
     -- FOREIGN KEY
     `BAND_ID` int NOT NULL
 );
+INSERT INTO `Musik-Richtung`(`Bezeichnung`, `BAND_ID`) VALUES
+('Heavy Metal', 1);
+
+
+
+
 -- --------------------------------------------------------------------------------------------
-
-CREATE TABLE `R_Mitglied_besitzt_eine_Rolle`(
-`MITG_ID` int NOT NULL,
-`ROLL_ID` int NOT NULL
-);
-
-
-
-
-
-CREATE TABLE `R_Veranstaltung_wird_vorgeschlagen_von_Mitglied`(
-`VERA_ID` int NOT NULL,
-`MITG_ID` int NOT NULL
-);
-
-
-
-
-CREATE TABLE `R_Veranstaltung_findet_statt_in_Bundesland`(
-`VERA_ID` int NOT NULL,
-`BULA_ID` int NOT NULL
-);
-
-
-
-
-CREATE TABLE `R_Veranstaltung_findet_statt_in_Region`(
-`VERA_ID` int NOT NULL,
-`REGI_ID` int NOT NULL
-);
-
-
-
-
-CREATE TABLE `R_Veranstaltung_findet_statt_in_Stadtteil`(
-`VERA_ID` int NOT NULL,
-`STTL_ID` int NOT NULL
-);
-
-
-
-
-CREATE TABLE `R_Veranstaltung_findet_statt_in_Stadt`(
-`VERA_ID` int NOT NULL,
-`STDT_ID` int NOT NULL
-);
-
-
-
-
-CREATE TABLE `R_Veranstaltung_findet_statt_in_Veranstaltungsort`(
-`VERA_ID` int NOT NULL,
-`VAOT_ID` int NOT NULL
-);
-
-
-
-
-CREATE TABLE `R_Veranstaltung_hat_Preis-Typ`(
-`VERA_ID` int NOT NULL,
-`PRTP_ID` int NOT NULL
-);
-
-
-
-CREATE TABLE `R_Veranstaltung_hat_Veranstaltungs-Typ`(
-  `VERA_ID` int NOT NULL,
-  `VETP_ID` int NOT NULL
-);
-
-
-
-CREATE TABLE `R_Band_ist_Hauptgruppe_bei_Konzert`(
-`VERA_ID` int NOT NULL,
-`BAND_ID` int NOT NULL
-);
-
-
 
 
 
@@ -369,14 +322,6 @@ CREATE TABLE `R_Band_tritt_auf_bei_Festival`(
 `Datum` date NOT NULL,
 `Uhrzeit` time NOT NULL,
 `Wochentag` varchar(40) DEFAULT NULL
-);
-
-
-
-
-CREATE TABLE `R_Band_spielt_Musik-Richtung`(
-`BAND_ID` int NOT NULL,
-`MURI_ID` int NOT NULL
 );
 
 
@@ -404,6 +349,7 @@ ADD FOREIGN KEY (BAND_ID) REFERENCES Band(BAND_ID);
 
 ALTER TABLE R_Musiker_spielt_in_Band
 ADD FOREIGN KEY (MUSI_ID) REFERENCES Musiker(MUSI_ID);
+
 -- -----------
 
 ALTER TABLE R_Band_hat_Song
@@ -414,132 +360,69 @@ ADD FOREIGN KEY (SONG_ID) REFERENCES Song(SONG_ID);
 
 -- ----------
 
-ALTER TABLE `R_Band_spielt_Musik-Richtung`
+ALTER TABLE R_Band_tritt_auf_bei_Festival
+ADD FOREIGN KEY(VERA_ID) REFERENCES Festival(VERA_ID);
+
+ALTER TABLE R_Band_tritt_auf_bei_Festival
 ADD FOREIGN KEY(BAND_ID) REFERENCES Band(BAND_ID);
 
-ALTER TABLE `R_Band_spielt_Musik-Richtung`
-ADD FOREIGN KEY (MURI_ID) REFERENCES Musiker(MUSI_ID);
 
 -- ---------
 
+ALTER TABLE R_Band_ist_Vorgruppe_bei_Konzert
+ADD FOREIGN KEY(BAND_ID) REFERENCES Band(BAND_ID);
+
+ALTER TABLE R_Band_ist_Vorgruppe_bei_Konzert
+ADD FOREIGN KEY(VERA_ID) REFERENCES Konzert(VERA_ID);
 
 
--- --------
-
-
--- --------
-ALTER TABLE `R_Veranstaltung_hat_Preis-Typ`
-ADD FOREIGN KEY (VERA_ID) REFERENCES Veranstaltung(VERA_ID);
-
-ALTER TABLE `R_Veranstaltung_hat_Preis-Typ`
-ADD FOREIGN KEY(PRTP_ID) REFERENCES `Preis-Typ`(PRTP_ID);
-
--- --------
-
-ALTER TABLE `R_Veranstaltung_hat_Veranstaltungs-Typ`
-ADD FOREIGN KEY(VERA_ID) REFERENCES Veranstaltung(VERA_ID);
-
-ALTER TABLE `R_Veranstaltung_hat_Veranstaltungs-Typ`
-ADD FOREIGN KEY(VETP_ID) REFERENCES `Veranstaltungs-Typ`(VETP_ID);
-
--- --------
-ALTER TABLE R_Veranstaltung_findet_statt_in_Veranstaltungsort
-ADD FOREIGN KEY(VERA_ID) REFERENCES Veranstaltung(VERA_ID);
-
-ALTER TABLE R_Veranstaltung_findet_statt_in_Veranstaltungsort
-ADD FOREIGN KEY(VAOT_ID) REFERENCES Veranstaltungsort(VAOT_ID);
-
--- -------
-
-ALTER TABLE R_Veranstaltung_findet_statt_in_Stadt
-ADD FOREIGN KEY(VERA_ID) REFERENCES Veranstaltung(VERA_ID);
-
-ALTER TABLE R_Veranstaltung_findet_statt_in_Stadt
-ADD FOREIGN KEY(STDT_ID) REFERENCES Stadt(STDT_ID);
-
--- -----
-
-ALTER TABLE R_Veranstaltung_findet_statt_in_Stadtteil
-ADD FOREIGN KEY(VERA_ID) REFERENCES Veranstaltung(VERA_ID);
-
-ALTER TABLE R_Veranstaltung_findet_statt_in_Stadtteil
-ADD FOREIGN KEY(STTL_ID) REFERENCES Stadtteil(STTL_ID);
-
--- -----
-
-ALTER TABLE R_Veranstaltung_findet_statt_in_Region
-ADD FOREIGN KEY(VERA_ID) REFERENCES Veranstaltung(VERA_ID);
-
-ALTER TABLE R_Veranstaltung_findet_statt_in_Region
-ADD FOREIGN KEY(REGI_ID) REFERENCES Region(REGI_ID);
-
--- -----
-
-ALTER TABLE R_Veranstaltung_findet_statt_in_Bundesland
-ADD FOREIGN KEY(VERA_ID) REFERENCES Veranstaltung(VERA_ID);
-
-ALTER TABLE R_Veranstaltung_findet_statt_in_Bundesland
-ADD FOREIGN KEY(BULA_ID) REFERENCES Bundesland(BULA_ID);
-
--- -------
-
-ALTER TABLE R_Veranstaltung_wird_vorgeschlagen_von_Mitglied
-ADD FOREIGN KEY(VERA_ID) REFERENCES Veranstaltung(VERA_ID);
-
-ALTER TABLE R_Veranstaltung_wird_vorgeschlagen_von_Mitglied
-ADD FOREIGN KEY(MITG_ID) REFERENCES Mitglied(MITG_ID);
-
--- -------
-
-ALTER TABLE R_Mitglied_besitzt_eine_Rolle
-ADD FOREIGN KEY(MITG_ID) REFERENCES Mitglied(MITG_ID);
-
-ALTER TABLE R_Mitglied_besitzt_eine_Rolle
-ADD FOREIGN KEY(ROLL_ID) REFERENCES Rolle(ROLL_ID);
 
 -- --------------------------------------------------------------------------------------------
+
 ALTER TABLE`Mitglied`
- ADD FOREIGN KEY (ROLL_ID) REFERENCES Rolle(ROLL_ID);
+ADD FOREIGN KEY (ROLL_ID) REFERENCES Rolle(ROLL_ID);
 
-
-
-
-
- ALTER TABLE `Veranstaltung`
- ADD FOREIGN KEY (PRTP_ID) REFERENCES `Preis-Typ`(PRTP_ID);
+ALTER TABLE `Veranstaltung`
+ADD FOREIGN KEY (PRTP_ID) REFERENCES `Preis-Typ`(PRTP_ID);
 
 ALTER TABLE `Veranstaltung`
 ADD FOREIGN KEY (VETP_ID) REFERENCES `Veranstaltungs-Typ`(VETP_ID);
 
- ALTER TABLE `Veranstaltung`
- ADD FOREIGN KEY(BULA_ID) REFERENCES Bundesland(BULA_ID);
+ALTER TABLE `Veranstaltung`
+ADD FOREIGN KEY(BULA_ID) REFERENCES Bundesland(BULA_ID);
 
- ALTER TABLE `Veranstaltung`
- ADD FOREIGN KEY(REGI_ID) REFERENCES Region(REGI_ID);
+ALTER TABLE `Veranstaltung`
+ADD FOREIGN KEY(REGI_ID) REFERENCES Region(REGI_ID);
 
- ALTER TABLE `Veranstaltung`
- ADD FOREIGN KEY(STTL_ID) REFERENCES Stadtteil(STTL_ID);
+ALTER TABLE `Veranstaltung`
+ADD FOREIGN KEY(STTL_ID) REFERENCES Stadtteil(STTL_ID);
 
- ALTER TABLE `Veranstaltung`
- ADD FOREIGN KEY(STDT_ID) REFERENCES Stadt(STDT_ID);
+ALTER TABLE `Veranstaltung`
+ADD FOREIGN KEY(STDT_ID) REFERENCES Stadt(STDT_ID);
 
- ALTER TABLE `Veranstaltung`
- ADD FOREIGN KEY(VAOT_ID) REFERENCES Veranstaltungsort(VAOT_ID;)
+ALTER TABLE `Veranstaltung`
+ADD FOREIGN KEY(VAOT_ID) REFERENCES Veranstaltungsort(VAOT_ID);
 
- ALTER TABLE `Band`
- ADD FOREIGN KEY(MUSI_ID) REFERENCES Musiker(MUSI_ID);
+ALTER TABLE `Band`
+ADD FOREIGN KEY(MUSI_ID) REFERENCES Musiker(MUSI_ID);
 
- ALTER TABLE`Musiker`
- ADD FOREIGN KEY(BAND_ID) REFERENCES Band(BAND_ID);
+ALTER TABLE`Musiker`
+ADD FOREIGN KEY(BAND_ID) REFERENCES Band(BAND_ID);
 
- ALTER TABLE`Band`
- ADD FOREIGN KEY(SONG_ID) REFERENCES Song(SONG_ID);
+ALTER TABLE`Band`
+ADD FOREIGN KEY(SONG_ID) REFERENCES Song(SONG_ID);
 
- ALTER TABLE`Song`
- ADD FOREIGN KEY(BAND_ID) REFERENCES Band(BAND_ID);
+ALTER TABLE`Song`
+ADD FOREIGN KEY(BAND_ID) REFERENCES Band(BAND_ID);                                                                                                                                                           
+                                                        
+ALTER TABLE `Musik-Richtung`
+ADD FOREIGN KEY(BAND_ID) REFERENCES Band(BAND_ID);
 
- ALTER TABLE `Musik-Richtung`
- ADD FOREIGN KEY(BAND_ID) REFERENCES Band(BAND_ID);
+ALTER TABLE`Band`
+ADD FOREIGN KEY(MURI_ID) REFERENCES `Musik-Richtung`(MURI_ID);
 
- ALTER TABLE`Band`
- ADD FOREIGN KEY(MURI_ID) REFERENCES Musik-Richtung(MURI_ID);
+ALTER TABLE `Festival`
+ADD FOREIGN KEY(BAND_ID) REFERENCES Band(BAND_ID);
+
+ALTER TABLE `Konzert`
+ADD FOREIGN KEY(BAND_ID) REFERENCES Band(BAND_ID);
