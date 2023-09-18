@@ -312,7 +312,7 @@ CREATE TABLE `R_Band_ist_Vorgruppe_bei_Konzert`(
 `R_BVK_ID` int NOT NULL AUTO_INCREMENT,
 `VERA_ID` int NOT NULL,
 `BAND_ID` int NOT NULL,
-ADD PRIMARY KEY (`R_BVK_ID`)
+PRIMARY KEY (`R_BVK_ID`)
 );
 
 
@@ -325,7 +325,7 @@ CREATE TABLE `R_Band_tritt_auf_bei_Festival`(
 `Datum` date NOT NULL,
 `Uhrzeit` time NOT NULL,
 `Wochentag` varchar(40) DEFAULT NULL,
-ADD PRIMARY KEY(`R_BAF_ID`);
+PRIMARY KEY(`R_BAF_ID`)
 );
 
 
@@ -335,7 +335,7 @@ CREATE TABLE `R_Band_hat_Song`(
 `R_BHS_ID` int NOT NULL AUTO_INCREMENT,
 `BAND_ID` int NOT NULL,
 `SONG_ID` int NOT NULL,
-ADD PRIMARY KEY(`R_BHS_ID`)
+PRIMARY KEY(`R_BHS_ID`)
 );
 
 
@@ -345,7 +345,7 @@ CREATE TABLE `R_Musiker_spielt_in_Band`(
 `R_MSB_ID` int NOT NULL AUTO_INCREMENT,
 `BAND_ID` int NOT NULL,
 `MUSI_ID` int NOT NULL,
-ADD PRIMARY KEY (`R_MSB_ID`)
+PRIMARY KEY (`R_MSB_ID`)
 );
 
 
