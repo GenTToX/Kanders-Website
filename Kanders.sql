@@ -34,14 +34,14 @@ CREATE TABLE `Mitglied` (
   `Vorname` varchar(40) DEFAULT NULL,
   `Passwort` varchar(40) NOT NULL,
   `Nachname` varchar(40) DEFAULT NULL,
-  `E-Mail` varchar(40) DEFAULT NULL,
+  `E-Mail` varchar(64) DEFAULT NULL,
   `Geburtsdatum` DATE DEFAULT NULL,
-  `Geschlecht` varchar(40) DEFAULT NULL,
-  `Telefonnummer` int DEFAULT NULL,
-  `Strasse` varchar(40) DEFAULT NULL,
-  `Hausummer` int DEFAULT NULL,
-  `Ort` varchar(40) DEFAULT NULL,
-  `PLZ` int DEFAULT NULL,
+  `Geschlecht` varchar(8) DEFAULT NULL,
+  `Telefonnummer` varchar(20) DEFAULT NULL,
+  `Strasse` varchar(54) DEFAULT NULL,
+  `Hausummer` varchar(10) DEFAULT NULL,
+  `Ort` varchar(26) DEFAULT NULL,
+  `PLZ` varchar (5) DEFAULT NULL,
   
 -- FOREIGN KEY
   `ROLL_ID` int NOT NULL,
@@ -65,7 +65,7 @@ INSERT INTO `Mitglied` (`Username`, `Vorname`, `Nachname`, `Passwort`, `Geburtsd
 
 CREATE TABLE `Rolle` (
   `ROLL_ID` int NOT NULL AUTO_INCREMENT,
-  `Bezeichnung` varchar(40) NOT NULL,
+  `Bezeichnung` varchar(20) NOT NULL,
 
   PRIMARY KEY (`ROLL_ID`),
 
@@ -112,7 +112,7 @@ INSERT INTO `Veranstaltung` (`Preis`, `Einlass`, `PRTP_ID`, `Start-Wochentag`, `
 
  CREATE TABLE `Preis-Typ` (
   `PRTP_ID` int NOT NULL AUTO_INCREMENT,
-  `Bezeichnung` varchar(40),
+  `Bezeichnung` varchar(11),
 
   PRIMARY KEY (`PRTP_ID`),
 
@@ -130,7 +130,7 @@ INSERT INTO `Preis-Typ` (`Bezeichnung`) VALUES
 
 CREATE TABLE `Veranstaltungs-Typ` (
  `VETP_ID` int NOT NULL AUTO_INCREMENT,
-  `Bezeichnung` varchar(40),
+  `Bezeichnung` varchar(8),
 
   PRIMARY KEY (`VETP_ID`),
 
@@ -147,7 +147,7 @@ INSERT INTO `Veranstaltungs-Typ`(`Bezeichnung`) VALUES
 
 CREATE TABLE `Veranstaltungsort` (
   `VAOT_ID` int NOT NULL AUTO_INCREMENT,
-  `Name` varchar(40) DEFAULT NULL,
+  `Name` varchar(64) DEFAULT NULL,
   
   PRIMARY KEY (`VAOT_ID`),
 
@@ -186,7 +186,7 @@ INSERT INTO `Stadt` (`Name`) VALUES
 CREATE TABLE `Stadtteil`(
   `STTL_ID` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(40) DEFAULT NULL,
-  `PLZ` int DEFAULT NULL,
+  `PLZ` int (5) DEFAULT NULL,
 
   PRIMARY KEY(`STTL_ID`),
 
@@ -220,7 +220,7 @@ INSERT INTO`Region` (`Name`) VALUES
 
 CREATE TABLE `Bundesland`(
     `BULA_ID` int NOT NULL AUTO_INCREMENT,
-    `Name` varchar(40),
+    `Name` varchar(22),
 
     PRIMARY KEY(`BULA_ID`),
 
@@ -279,7 +279,7 @@ CREATE TABLE `Festival`(
     `VERA_ID` int NOT NULL,
     `Ende-Datum` Date NOT NULL,
     `Ende-Uhrzeit` time NOT NUll,
-    `Ende-Wochentag` varchar(40) NOT NULL,
+    `Ende-Wochentag` varchar( ) NOT NULL,
   
     PRIMARY KEY (`VERA_ID`),
 
@@ -389,7 +389,7 @@ CREATE TABLE `R_Band_tritt_auf_bei_Festival`(
 `BAND_ID` int NOT NULL,
 `Datum` date NOT NULL,
 `Uhrzeit` time NOT NULL,
-`Wochentag` varchar(40) DEFAULT NULL,
+`Wochentag` varchar(10) DEFAULT NULL,
 `RTABF_ID` int NOT NULL,
 PRIMARY KEY(`R_BAF_ID`),
 
