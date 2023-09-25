@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="CSS/stylesheet.css">
+  <script defer="" src="button.js"></script>
+</head>
+<body>
+  <div id="stars"></div>
+  <div id="stars2"></div>
+  <div id="stars3"></div>
+  
+  <div class="card">
+      <div class="container">
+
+
+<!---------------------------- NAME ----------------------------------->
+        <div class="container-inner">
+          <span>Name</span> 
+          <br>
+          <input type="text" class="textfeld" placeholder="Festivalname">
+        </div>
+<!---------------------------- START DATUM ----------------------------------->
+        <div class="container-inner">
+          <span>Startdatum</span> 
+          <br>
+          <input type="text" class="textfeld" placeholder="Wochentag/TT/MM/JJJJ">
+          <br>
+          <span>Enddatum</span> 
+          <br>
+          <input type="text" class="textfeld" placeholder="Wochentag/TT/MM/JJJJ">
+        </div>
+<!---------------------------- TIME START ----------------------------------->
+        <div class="container-inner">
+          <span>Time start</span> 
+          <br>
+          <input type="text" class="textfeld" placeholder="00:00 Uhr">
+          <br>
+          <span>Time end</span> 
+          <br>
+          <input type="text" class="textfeld" placeholder="00:00 Uhr">   
+        </div>
+<!---------------------------- BAND & +/- ----------------------------------->
+
+        <div class="container-inner">
+          <span>Band</span> 
+          <br>
+          <input type="text" class="textfeld" placeholder="Bandname">
+          <br>
+          <button class="add-btn" id="addTextFieldButton">+</button> 
+          <button class="add-btn" id="deleteTextFieldButton">-</button>
+          <div class="tfc" id="textFieldContainer"></div>
+        </div>
+<!---------------------------- SPALTE PREIS-Typ ----------------------------------->
+        <div class="container-preis-typ">
+          
+          <span>Preis-Typ</span> 
+          <br>
+          <input type="text" class="textfeld-preis-typ" placeholder="00,00€"> <br/>
+          <div class="container-check">
+            <input type="checkbox" class="Checkbox-preis" id="Kein Preis">
+            <label for="Hutaktion">Kein Preis</label>
+            <br>
+            <input type="checkbox" class="Checkbox-preis" id="Eintritt-Frei">
+            <label for="Hutaktion">Eintritt-Frei</label>
+            <br>
+            <input type="checkbox" class="Checkbox-preis" id="Hutaktion">
+            <label for="Hutaktion">Hutaktion</label>
+          </div>
+        </div>
+<!---------------------------- SPALTE ORT ----------------------------------->     
+        <div class="container-inner">
+          <span>Stadt</span>
+          <br />
+          <input type="text" class="textfeld" placeholder="Stadt ">
+          <br />
+          <span>Veranstaltungsort</span>
+          <br />
+          <input type="text" class="textfeld" placeholder="Veranstaltungsort">
+          <br />
+          <span>Stadtteil</span>
+          <br />
+          <input type="text" class="textfeld" placeholder="Stadtteil">
+          <br />
+          <span>Region</span>
+          <br />
+          <input type="text" class="textfeld" placeholder="Region">
+          <br />
+          <span>Bundesland</span>
+          <br />
+          <input type="text" class="textfeld" placeholder="Bundesland">
+        </div>
+<!--------------------------------------------------------------------------->
+  
+</div>   
+<!---------------------------- BESTÄTIGEN ----------------------------------->
+<button type="submit" id="bestaetigen" class="btn mt-4">Bestätigen</button>
+</div>
+   
+  
+  
+  
+
+</body></html>
