@@ -1,7 +1,16 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Button-Element abrufen
+    // Add-Button-Element abrufen
     const addButton = document.getElementById("addTextFieldButton");
-    const deleteButton = document.getElementById("deleteTextFieldButton");
+
+    // Delete Button Erstellen
+    const deleteButton = document.createElement("button");
+    deleteButton.style.display = "hidden";
+    deleteButton.className = "delete-btn";
+    deleteButton.id = "deleteTextFieldButton";
+    deleteButton.textContent = "-";
+
+    // Delete Button Container Abrufen
+    const deleteButtonContainer = document.getElementById("de-te-fi-btn-container");
 
     // Container für die Textfelder abrufen
     const textFieldContainer = document.getElementById("textFieldContainer");
@@ -31,6 +40,12 @@ document.addEventListener("DOMContentLoaded", function() {
             // Das Textfeld dem Container hinzufügen
             textFieldContainer.appendChild(textField);
             textFieldCount++;
+
+            //Delete Button Erzeugen
+            if(textField.id == 1) {
+                deleteButtonContainer.appendChild(deleteButton);
+            }
+
         } else {
             console.log("Die maximale Anzahl von Textfeldern (5) wurde erreicht.");
         }
@@ -43,7 +58,11 @@ document.addEventListener("DOMContentLoaded", function() {
             textFieldCount--;
         }
 
-    });
+        // Delete Button Deleten
+        if(textFieldCount < 2) {
+            deleteButtonContainer.removeChild(deleteButtonContainer.firstChild);
+        }
 
+    });
 
 });
