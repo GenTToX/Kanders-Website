@@ -116,6 +116,29 @@ body{
   border: solid rgb(255, 255, 255, 0.7) 2px;
 }
 
+.delete-btn{
+
+  height: 23px;
+  font-size: 9px;
+  font-weight: 100;
+  text-transform: uppercase;
+  -webkit-transition: all 200ms linear;
+  transition: all 200ms linear;
+  padding: 0 10px;
+  letter-spacing: 2px;
+  align-items: center;
+  background-color: transparent;
+  color: #fff;
+  max-width: 150px;
+  text-align: center;
+  border: solid rgb(255, 255, 255, 0.7) 2px;
+  display: hidden;
+}
+
+.de-te-fi-btn-container {
+  display: inline;
+}
+
 .textfeld {
   border-radius: 5px;
   width: 20vh;
