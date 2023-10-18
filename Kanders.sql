@@ -122,7 +122,9 @@ UNIQUE (Bezeichnung)
 
 INSERT INTO `Preis-Typ` (`Bezeichnung`) VALUES
 ('Normal'),
+('Kein Preis'),
 ('Hutaktion');
+
 
 --
 --
@@ -139,7 +141,8 @@ UNIQUE (Bezeichnung)
 );
 
 INSERT INTO `Veranstaltungs-Typ`(`Bezeichnung`) VALUES
-('VeranstaltungsTyp');
+('Konzert'),
+('Festival');
 
 --
 --
@@ -156,6 +159,15 @@ UNIQUE (`Name`)
 );
 
 INSERT INTO `Veranstaltungsort` (`Name`) VALUES 
+('Mitsubishi-Halle'),
+('AKKA'),
+('Piano'),
+('Stadtschenke'),
+('Kump'),
+('Ablüh'),
+('Turbinenhalle'),
+('Rockmusikverein'),
+('Westfalenhalle'),
 ('Schalander');
 
 --
@@ -175,7 +187,14 @@ UNIQUE (`Name`)
 
 
 INSERT INTO `Stadt` (`Name`) VALUES
-('Unna');
+('Unna'),
+('Paderbon'),
+('Dortmund'),
+('Brilon'),
+('Marsberg'),
+('Oberhausen'),
+('Saltzkotten'),
+('Düsseldorf');
 
 
 
@@ -186,7 +205,6 @@ INSERT INTO `Stadt` (`Name`) VALUES
 CREATE TABLE `Stadtteil`(
   `STTL_ID` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(40) DEFAULT NULL,
-  `PLZ` int (5) DEFAULT NULL,
 
   PRIMARY KEY(`STTL_ID`),
 
@@ -194,8 +212,8 @@ CREATE TABLE `Stadtteil`(
 UNIQUE (`Name`)
 );
 
-INSERT INTO `Stadtteil` (`Name`, `PLZ`) VALUES
-('Unna', '5425');
+INSERT INTO `Stadtteil` (`Name`) VALUES
+('Westheim');
 
 --
 --
@@ -230,7 +248,22 @@ UNIQUE (`Name`)
 
 
 INSERT INTO `Bundesland`(`Name`) VALUES
-('NRW');
+('Bayern'),
+('Niedersachsen'),
+('Baden-Württemberg'),
+('Nordrhein-Westfalen'),
+('Brandenburg'),
+('Mecklenburg-Vorpommern'),
+('Hessen'),
+('Sachsen-Anhalt'),
+('Rheinland-Pfalz'),
+('Sachsen'),
+('Thüringen'),
+('Schleswig-Holstein'),
+('Saarland'),
+('Berlin'),
+('Hamburg'),
+('Bremen');
 
 --
 --
