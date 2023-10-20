@@ -123,6 +123,7 @@ UNIQUE (Bezeichnung)
 INSERT INTO `Preis-Typ` (`Bezeichnung`) VALUES
 ('Normal'),
 ('Kein Preis'),
+('Eintritt Frei'),
 ('Hutaktion');
 
 
@@ -167,8 +168,7 @@ INSERT INTO `Veranstaltungsort` (`Name`) VALUES
 ('Ablüh'),
 ('Turbinenhalle'),
 ('Rockmusikverein'),
-('Westfalenhalle'),
-('Schalander');
+('Westfalenhalle');
 
 --
 --
@@ -263,7 +263,8 @@ INSERT INTO `Bundesland`(`Name`) VALUES
 ('Saarland'),
 ('Berlin'),
 ('Hamburg'),
-('Bremen');
+('Bremen'),
+('Nicht gegeben Bitte nachtragen');
 
 --
 --
@@ -303,6 +304,9 @@ CREATE TABLE `Konzert`(
     -- ----FOREIGN KEY
     `BAND_ID` int NOT NULL
 );
+
+
+
 
 --
 --
