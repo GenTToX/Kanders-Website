@@ -295,7 +295,7 @@ CREATE TABLE `Festival`(
 --
 --
 
-CREATE TABLE `Festival-Name`(
+CREATE TABLE `Festival_Name`(
     `FSNM_ID` int NOT NULL AUTO_INCREMENT,
     `Name` varchar(40) NOT NULL,
 
