@@ -312,19 +312,19 @@ CREATE TABLE `Konzert`(
 --
 --
 
-CREATE TABLE `Festival`(
-    `VERA_ID` int NOT NULL,
-    `Ende_Datum` Date NOT NULL,
-    `Ende_Uhrzeit` time NOT NUll,
-    `Ende_Wochentag` varchar( ) NOT NULL,
-  
-    PRIMARY KEY (`VERA_ID`),
+CREATE TABLE Festival(
+    VERA_ID int NOT NULL,
+    Ende_Datum DATE NOT NULL,
+    Ende_Uhrzeit TIME NOT NUll,
+    Ende_Wochentag VARCHAR(10) NOT NULL,
+
+    PRIMARY KEY (VERA_ID),
 
 
 
-    -- --FOREIGN KEY
-    `BAND_ID` int NOT NULL,
-    `FSNM_ID` int NOT NULL
+-- ----------FOREIGN KEY
+    BAND_ID int NOT NULL,
+    FSNM_ID int NOT NULL
 
 );
 
