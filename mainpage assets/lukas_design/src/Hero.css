@@ -1,0 +1,90 @@
+.hero-section {
+    background-color: #D9D9D9;
+    width: 100vw;
+    aspect-ratio: 2.8/1;
+    display: flex;
+    align-items: center;
+    background-image: url(http://localhost:5173/heroback5.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.hero-card {
+    background-color: #fff;
+    position: absolute;
+    margin-left: 20vw;
+    margin-right: 50vw;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    width: 60vw;
+    aspect-ratio: 16/9;
+    border-radius: 2vh;
+    z-index: 2;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    align-items: center;
+    overflow-y: hidden;
+}
+.hero-card::-webkit-scrollbar {
+    display: none;
+}
+.hero-card {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.hero-card img {
+    flex: 1 0 100%;
+    object-fit: cover;
+}
+.hero-card-shadow {
+    z-index: 1;
+    background-color: hsl(0, 0%, 44%);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    width: 61vw;
+    aspect-ratio: 15/8;
+    border-radius: 2vh;
+    transition-duration: 0.5s;
+}
+.hero-card-shadow:hover {
+    background-color: #C3B1E1;
+}
+
+
+.arrow-container {
+    position: absolute;
+    z-index: 3;
+    height: 20vh;
+    min-width: 60vw;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.arrow-left {
+    height: 5vh;
+    aspect-ratio: 1;
+}
+#arrow-left {
+    transition-duration: 0.5s;
+}
+#arrow-left:hover {
+    fill: #C3B1E1;
+}
+.arrow-right {
+    margin-left: auto;
+    height: 5vh;
+    aspect-ratio: 1;
+}
+#arrow-right {
+    transition-duration: 0.5s;
+    transform: rotate(180deg);
+}
+#arrow-right:hover {
+    fill: #C3B1E1;
+}
