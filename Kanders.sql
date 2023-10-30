@@ -276,7 +276,7 @@ CREATE TABLE `Konzert`(
 --
 
 CREATE TABLE `Festival`(
-    `VERA_ID` int NOT NULL,
+    `VERA_ID` int (11) NOT NULL,
     `Ende_Datum` Date NOT NULL,
     `Ende_Uhrzeit` time NOT NUll,
     `Ende_Wochentag` varchar(10) NOT NULL,
