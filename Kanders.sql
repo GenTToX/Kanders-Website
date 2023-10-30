@@ -85,9 +85,9 @@ CREATE TABLE `Veranstaltung` (
   `VERA_ID` int NOT NULL AUTO_INCREMENT,
   `Preis` decimal(5, 2) DEFAULT NULL, 
   `Einlass` time NOT NULL,
-  `Start_Wochentag` varchar(40) NOT NULL,
-  `Start_Uhrzeit` time NOT NULL,
-  `Start_Datum` DATE NOT NULL,
+  `Start-Wochentag` varchar(40) NOT NULL,
+  `Start-Uhrzeit` time NOT NULL,
+  `Start-Datum` DATE NOT NULL,
  
   PRIMARY KEY (`VERA_ID`),
 
@@ -103,14 +103,14 @@ CREATE TABLE `Veranstaltung` (
   `VAOT_ID` int NOT NULL
 );
 
-INSERT INTO `Veranstaltung` (`Preis`, `Einlass`, `PRTP_ID`, `Start_Wochentag`, `Start_Uhrzeit`, `Start_Datum`, `VETP_ID`, `BULA_ID`, `REGI_ID`, `STTL_ID`, `STDT_ID`, `VAOT_ID`) VALUES
+INSERT INTO `Veranstaltung` (`Preis`, `Einlass`, `PRTP_ID`, `Start-Wochentag`, `Start-Uhrzeit`, `Start-Datum`, `VETP_ID`, `BULA_ID`, `REGI_ID`, `STTL_ID`, `STDT_ID`, `VAOT_ID`) VALUES
 ('','19:02:00', 1, 'Sunday', '16:02:00', '2023-09-10', 1, 1, 1, 1, 1, 1);
 
  --
  --
  --
 
- CREATE TABLE `Preis_Typ` (
+ CREATE TABLE `Preis-Typ` (
   `PRTP_ID` int NOT NULL AUTO_INCREMENT,
   `Bezeichnung` varchar(11),
 
@@ -120,18 +120,15 @@ INSERT INTO `Veranstaltung` (`Preis`, `Einlass`, `PRTP_ID`, `Start_Wochentag`, `
 UNIQUE (Bezeichnung)
 );
 
-INSERT INTO `Preis_Typ` (`Bezeichnung`) VALUES
+INSERT INTO `Preis-Typ` (`Bezeichnung`) VALUES
 ('Normal'),
-('Kein Preis'),
-('Eintritt Frei'),
 ('Hutaktion');
 
-
 --
 --
 --
 
-CREATE TABLE `Veranstaltungs_Typ` (
+CREATE TABLE `Veranstaltungs-Typ` (
  `VETP_ID` int NOT NULL AUTO_INCREMENT,
   `Bezeichnung` varchar(8),
 
@@ -141,9 +138,8 @@ CREATE TABLE `Veranstaltungs_Typ` (
 UNIQUE (Bezeichnung)
 );
 
-INSERT INTO `Veranstaltungs_Typ`(`Bezeichnung`) VALUES
-('Konzert'),
-('Festival');
+INSERT INTO `Veranstaltungs-Typ`(`Bezeichnung`) VALUES
+('VeranstaltungsTyp');
 
 --
 --
@@ -160,15 +156,7 @@ UNIQUE (`Name`)
 );
 
 INSERT INTO `Veranstaltungsort` (`Name`) VALUES 
-('Mitsubishi-Halle'),
-('AKKA'),
-('Piano'),
-('Stadtschenke'),
-('Kump'),
-('Ablüh'),
-('Turbinenhalle'),
-('Rockmusikverein'),
-('Westfalenhalle');
+('Schalander');
 
 --
 --
@@ -187,14 +175,7 @@ UNIQUE (`Name`)
 
 
 INSERT INTO `Stadt` (`Name`) VALUES
-('Unna'),
-('Paderbon'),
-('Dortmund'),
-('Brilon'),
-('Marsberg'),
-('Oberhausen'),
-('Saltzkotten'),
-('Düsseldorf');
+('Unna');
 
 
 
@@ -205,6 +186,7 @@ INSERT INTO `Stadt` (`Name`) VALUES
 CREATE TABLE `Stadtteil`(
   `STTL_ID` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(40) DEFAULT NULL,
+  `PLZ` int (5) DEFAULT NULL,
 
   PRIMARY KEY(`STTL_ID`),
 
@@ -212,8 +194,8 @@ CREATE TABLE `Stadtteil`(
 UNIQUE (`Name`)
 );
 
-INSERT INTO `Stadtteil` (`Name`) VALUES
-('Westheim');
+INSERT INTO `Stadtteil` (`Name`, `PLZ`) VALUES
+('Unna', '5425');
 
 --
 --
@@ -248,23 +230,7 @@ UNIQUE (`Name`)
 
 
 INSERT INTO `Bundesland`(`Name`) VALUES
-('Bayern'),
-('Niedersachsen'),
-('Baden-Württemberg'),
-('Nordrhein-Westfalen'),
-('Brandenburg'),
-('Mecklenburg-Vorpommern'),
-('Hessen'),
-('Sachsen-Anhalt'),
-('Rheinland-Pfalz'),
-('Sachsen'),
-('Thüringen'),
-('Schleswig-Holstein'),
-('Saarland'),
-('Berlin'),
-('Hamburg'),
-('Bremen'),
-('Nicht gegeben Bitte nachtragen');
+('NRW');
 
 --
 --
@@ -305,26 +271,23 @@ CREATE TABLE `Konzert`(
     `BAND_ID` int NOT NULL
 );
 
-
-
-
 --
 --
 --
 
-CREATE TABLE Festival(
-    VERA_ID int NOT NULL,
-    Ende_Datum DATE NOT NULL,
-    Ende_Uhrzeit TIME NOT NUll,
-    Ende_Wochentag VARCHAR(10) NOT NULL,
+CREATE TABLE `Festival`(
+    `VERA_ID` int NOT NULL,
+    `Ende-Datum` Date NOT NULL,
+    `Ende-Uhrzeit` time NOT NUll,
+    `Ende-Wochentag` varchar( ) NOT NULL,
+  
+    PRIMARY KEY (`VERA_ID`),
 
-    PRIMARY KEY (VERA_ID),
 
 
-
--- ----------FOREIGN KEY
-    BAND_ID int NOT NULL,
-    FSNM_ID int NOT NULL
+    -- --FOREIGN KEY
+    `BAND_ID` int NOT NULL,
+    `FSNM_ID` int NOT NULL
 
 );
 
@@ -383,7 +346,7 @@ INSERT INTO `Song` ( `Name`, `BAND_ID`) VALUES
 --
 --
 
-CREATE TABLE `Musik_Richtung`(
+CREATE TABLE `Musik-Richtung`(
     `MURI_ID` int NOT NULL AUTO_INCREMENT,
     `Bezeichnung` varchar(40) DEFAULT NULL,
 
@@ -395,8 +358,40 @@ CREATE TABLE `Musik_Richtung`(
     -- FOREIGN KEY
     `BAND_ID` int NOT NULL
 );
-INSERT INTO `Musik_Richtung`(`Bezeichnung`, `BAND_ID`) VALUES
+INSERT INTO `Musik-Richtung`(`Bezeichnung`, `BAND_ID`) VALUES
 ('Heavy Metal', 1);
+
+
+--
+--
+--
+
+CREATE TABLE `Gueltieger_Ort`(
+    `GORT_ID` int NOT NULL AUTO_INCREMENT,
+    `Stadt` varchar(40) DEFAULT NULL,
+    `Stadtteil` varchar(40) DEFAULT NULL,
+    `Region` varchar(40) DEFAULT NULL,
+    `Bundesland` varchar(40) DEFAULT NULL,
+
+    PRIMARY KEY(`GORT_ID`),
+
+
+    -- FOREIGN KEY
+    `STDT_ID` int NOT NULL,
+    `STTL_ID` int NOT NULL,
+    `REGI_ID` int NOT NULL,
+    `BULA_ID` int NOT NULL
+);
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -498,10 +493,10 @@ ALTER TABLE`Mitglied`
 ADD FOREIGN KEY (ROLL_ID) REFERENCES Rolle(ROLL_ID);
 
 ALTER TABLE `Veranstaltung`
-ADD FOREIGN KEY (PRTP_ID) REFERENCES `Preis_Typ`(PRTP_ID);
+ADD FOREIGN KEY (PRTP_ID) REFERENCES `Preis-Typ`(PRTP_ID);
 
 ALTER TABLE `Veranstaltung`
-ADD FOREIGN KEY (VETP_ID) REFERENCES `Veranstaltungs_Typ`(VETP_ID);
+ADD FOREIGN KEY (VETP_ID) REFERENCES `Veranstaltungs-Typ`(VETP_ID);
 
 ALTER TABLE `Veranstaltung`
 ADD FOREIGN KEY(BULA_ID) REFERENCES Bundesland(BULA_ID);
@@ -530,11 +525,11 @@ ADD FOREIGN KEY(SONG_ID) REFERENCES Song(SONG_ID);
 ALTER TABLE`Song`
 ADD FOREIGN KEY(BAND_ID) REFERENCES Band(BAND_ID);                                                                                                                                                           
                                                         
-ALTER TABLE `Musik_Richtung`
+ALTER TABLE `Musik-Richtung`
 ADD FOREIGN KEY(BAND_ID) REFERENCES Band(BAND_ID);
 
 ALTER TABLE`Band`
-ADD FOREIGN KEY(MURI_ID) REFERENCES `Musik_Richtung`(MURI_ID);
+ADD FOREIGN KEY(MURI_ID) REFERENCES `Musik-Richtung`(MURI_ID);
 
 ALTER TABLE `Festival`
 ADD FOREIGN KEY(BAND_ID) REFERENCES Band(BAND_ID);
@@ -543,6 +538,6 @@ ALTER TABLE `Konzert`
 ADD FOREIGN KEY(BAND_ID) REFERENCES Band(BAND_ID);
 
 ALTER TABLE `Festival`
-ADD FOREIGN KEY(FSNM_ID) REFERENCES `Festival_Name`(FSNM_ID);
+ADD FOREIGN KEY(FSNM_ID) REFERENCES `Festival-Name`(FSNM_ID);
 
 -- ------------------------------------------------------------------------------------
