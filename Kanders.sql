@@ -96,15 +96,11 @@ CREATE TABLE `Veranstaltung` (
   -- FOREIGN KEY
   `PRTP_ID` int NOT NULL,
   `VETP_ID` int NOT NULL,
-  `BULA_ID` int NOT NULL,
-  `REGI_ID` int NOT NULL,
-  `STTL_ID` int NOT NULL,
-  `STDT_ID` int NOT NULL,
   `VAOT_ID` int NOT NULL
 );
 
-INSERT INTO `Veranstaltung` (`Preis`, `Einlass`, `PRTP_ID`, `Start_Wochentag`, `Start_Uhrzeit`, `Start_Datum`, `VETP_ID`, `BULA_ID`, `REGI_ID`, `STTL_ID`, `STDT_ID`, `VAOT_ID`) VALUES
-('','19:02:00', 1, 'Sunday', '16:02:00', '2023-09-10', 1, 1, 1, 1, 1, 1);
+INSERT INTO `Veranstaltung` (`Preis`, `Einlass`, `PRTP_ID`, `Start_Wochentag`, `Start_Uhrzeit`, `Start_Datum`, `VETP_ID`, `VAOT_ID`) VALUES
+('','19:02:00', 1, 'Sunday', '16:02:00', '2023-09-10', 1, 1);
 
  --
  --
