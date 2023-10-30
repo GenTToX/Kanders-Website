@@ -364,7 +364,11 @@ INSERT INTO `Musik_Richtung`(`Bezeichnung`, `BAND_ID`) VALUES
 --
 
 CREATE TABLE `Gueltieger_Ort`(
-    `GORT_ID` int NOT NULL AUTO_INCREMENT
+    `GORT_ID` int NOT NULL AUTO_INCREMENT,
+    `Stadt` varchar(40) DEFAULT NULL,
+    `Stadtteil` varchar(40) DEFAULT NULL,
+    `Region` varchar(40) DEFAULT NULL,
+    `Bundesland` varchar(40) DEFAULT NULL,
 
     PRIMARY KEY(`GORT_ID`),
 
@@ -377,8 +381,7 @@ CREATE TABLE `Gueltieger_Ort`(
 );
 
 
-INSERT INTO `Gueltieger_Ort`(`STDT_ID`, `STTL_ID`, `REGI_ID`, `BULA_ID`) VALUES
-(1, null, null, null);
+
 
 
 
