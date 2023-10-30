@@ -362,6 +362,38 @@ INSERT INTO `Musik-Richtung`(`Bezeichnung`, `BAND_ID`) VALUES
 ('Heavy Metal', 1);
 
 
+--
+--
+--
+
+CREATE TABLE `Gueltieger_Ort`(
+    `GORT_ID` int NOT NULL AUTO_INCREMENT,
+    `Stadt` varchar(40) DEFAULT NULL,
+    `Stadtteil` varchar(40) DEFAULT NULL,
+    `Region` varchar(40) DEFAULT NULL,
+    `Bundesland` varchar(40) DEFAULT NULL,
+
+    PRIMARY KEY(`GORT_ID`),
+
+
+    -- FOREIGN KEY
+    `STDT_ID` int NOT NULL,
+    `STTL_ID` int NOT NULL,
+    `REGI_ID` int NOT NULL,
+    `BULA_ID` int NOT NULL
+);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 -- --------------------------------------------------------------------------------------------
