@@ -378,7 +378,7 @@ CREATE TABLE `Gueltieger_Ort`(
 
 
 INSERT INTO `Gueltieger_Ort`(`STDT_ID`, `STTL_ID`, `REGI_ID`, `BULA_ID`) VALUES
-(1, , , );
+(1, null, null, null);
 
 
 
