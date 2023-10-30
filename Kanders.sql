@@ -34,7 +34,7 @@ CREATE TABLE `Mitglied` (
   `Vorname` varchar(40) DEFAULT NULL,
   `Passwort` varchar(40) NOT NULL,
   `Nachname` varchar(40) DEFAULT NULL,
-  `E-Mail` varchar(64) DEFAULT NULL,
+  `E_Mail` varchar(64) DEFAULT NULL,
   `Geburtsdatum` DATE DEFAULT NULL,
   `Geschlecht` varchar(8) DEFAULT NULL,
   `Telefonnummer` varchar(20) DEFAULT NULL,
@@ -85,9 +85,9 @@ CREATE TABLE `Veranstaltung` (
   `VERA_ID` int NOT NULL AUTO_INCREMENT,
   `Preis` decimal(5, 2) DEFAULT NULL, 
   `Einlass` time NOT NULL,
-  `Start-Wochentag` varchar(40) NOT NULL,
-  `Start-Uhrzeit` time NOT NULL,
-  `Start-Datum` DATE NOT NULL,
+  `Start_Wochentag` varchar(40) NOT NULL,
+  `Start_Uhrzeit` time NOT NULL,
+  `Start_Datum` DATE NOT NULL,
  
   PRIMARY KEY (`VERA_ID`),
 
@@ -103,14 +103,14 @@ CREATE TABLE `Veranstaltung` (
   `VAOT_ID` int NOT NULL
 );
 
-INSERT INTO `Veranstaltung` (`Preis`, `Einlass`, `PRTP_ID`, `Start-Wochentag`, `Start-Uhrzeit`, `Start-Datum`, `VETP_ID`, `BULA_ID`, `REGI_ID`, `STTL_ID`, `STDT_ID`, `VAOT_ID`) VALUES
+INSERT INTO `Veranstaltung` (`Preis`, `Einlass`, `PRTP_ID`, `Start_Wochentag`, `Start_Uhrzeit`, `Start_Datum`, `VETP_ID`, `BULA_ID`, `REGI_ID`, `STTL_ID`, `STDT_ID`, `VAOT_ID`) VALUES
 ('','19:02:00', 1, 'Sunday', '16:02:00', '2023-09-10', 1, 1, 1, 1, 1, 1);
 
  --
  --
  --
 
- CREATE TABLE `Preis-Typ` (
+ CREATE TABLE `Preis_Typ` (
   `PRTP_ID` int NOT NULL AUTO_INCREMENT,
   `Bezeichnung` varchar(11),
 
@@ -120,7 +120,7 @@ INSERT INTO `Veranstaltung` (`Preis`, `Einlass`, `PRTP_ID`, `Start-Wochentag`, `
 UNIQUE (Bezeichnung)
 );
 
-INSERT INTO `Preis-Typ` (`Bezeichnung`) VALUES
+INSERT INTO `Preis_Typ` (`Bezeichnung`) VALUES
 ('Normal'),
 ('Hutaktion');
 
@@ -128,7 +128,7 @@ INSERT INTO `Preis-Typ` (`Bezeichnung`) VALUES
 --
 --
 
-CREATE TABLE `Veranstaltungs-Typ` (
+CREATE TABLE `Veranstaltungs_Typ` (
  `VETP_ID` int NOT NULL AUTO_INCREMENT,
   `Bezeichnung` varchar(8),
 
@@ -138,7 +138,7 @@ CREATE TABLE `Veranstaltungs-Typ` (
 UNIQUE (Bezeichnung)
 );
 
-INSERT INTO `Veranstaltungs-Typ`(`Bezeichnung`) VALUES
+INSERT INTO `Veranstaltungs_Typ`(`Bezeichnung`) VALUES
 ('VeranstaltungsTyp');
 
 --
@@ -277,9 +277,9 @@ CREATE TABLE `Konzert`(
 
 CREATE TABLE `Festival`(
     `VERA_ID` int NOT NULL,
-    `Ende-Datum` Date NOT NULL,
-    `Ende-Uhrzeit` time NOT NUll,
-    `Ende-Wochentag` varchar( ) NOT NULL,
+    `Ende_Datum` Date NOT NULL,
+    `Ende_Uhrzeit` time NOT NUll,
+    `Ende_Wochentag` varchar( ) NOT NULL,
   
     PRIMARY KEY (`VERA_ID`),
 
@@ -346,7 +346,7 @@ INSERT INTO `Song` ( `Name`, `BAND_ID`) VALUES
 --
 --
 
-CREATE TABLE `Musik-Richtung`(
+CREATE TABLE `Musik_Richtung`(
     `MURI_ID` int NOT NULL AUTO_INCREMENT,
     `Bezeichnung` varchar(40) DEFAULT NULL,
 
@@ -358,7 +358,7 @@ CREATE TABLE `Musik-Richtung`(
     -- FOREIGN KEY
     `BAND_ID` int NOT NULL
 );
-INSERT INTO `Musik-Richtung`(`Bezeichnung`, `BAND_ID`) VALUES
+INSERT INTO `Musik_Richtung`(`Bezeichnung`, `BAND_ID`) VALUES
 ('Heavy Metal', 1);
 
 
@@ -493,10 +493,10 @@ ALTER TABLE`Mitglied`
 ADD FOREIGN KEY (ROLL_ID) REFERENCES Rolle(ROLL_ID);
 
 ALTER TABLE `Veranstaltung`
-ADD FOREIGN KEY (PRTP_ID) REFERENCES `Preis-Typ`(PRTP_ID);
+ADD FOREIGN KEY (PRTP_ID) REFERENCES `Preis_Typ`(PRTP_ID);
 
 ALTER TABLE `Veranstaltung`
-ADD FOREIGN KEY (VETP_ID) REFERENCES `Veranstaltungs-Typ`(VETP_ID);
+ADD FOREIGN KEY (VETP_ID) REFERENCES `Veranstaltungs_Typ`(VETP_ID);
 
 ALTER TABLE `Veranstaltung`
 ADD FOREIGN KEY(BULA_ID) REFERENCES Bundesland(BULA_ID);
@@ -525,11 +525,11 @@ ADD FOREIGN KEY(SONG_ID) REFERENCES Song(SONG_ID);
 ALTER TABLE`Song`
 ADD FOREIGN KEY(BAND_ID) REFERENCES Band(BAND_ID);                                                                                                                                                           
                                                         
-ALTER TABLE `Musik-Richtung`
+ALTER TABLE `Musik_Richtung`
 ADD FOREIGN KEY(BAND_ID) REFERENCES Band(BAND_ID);
 
 ALTER TABLE`Band`
-ADD FOREIGN KEY(MURI_ID) REFERENCES `Musik-Richtung`(MURI_ID);
+ADD FOREIGN KEY(MURI_ID) REFERENCES `Musik_Richtung`(MURI_ID);
 
 ALTER TABLE `Festival`
 ADD FOREIGN KEY(BAND_ID) REFERENCES Band(BAND_ID);
@@ -538,6 +538,6 @@ ALTER TABLE `Konzert`
 ADD FOREIGN KEY(BAND_ID) REFERENCES Band(BAND_ID);
 
 ALTER TABLE `Festival`
-ADD FOREIGN KEY(FSNM_ID) REFERENCES `Festival-Name`(FSNM_ID);
+ADD FOREIGN KEY(FSNM_ID) REFERENCES `Festival_Name`(FSNM_ID);
 
 -- ------------------------------------------------------------------------------------
