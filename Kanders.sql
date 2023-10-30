@@ -96,7 +96,8 @@ CREATE TABLE `Veranstaltung` (
   -- FOREIGN KEY
   `PRTP_ID` int NOT NULL,
   `VETP_ID` int NOT NULL,
-  `VAOT_ID` int NOT NULL
+  `VAOT_ID` int NOT NULL,
+  `GORT_ID` int NOT NULL
 );
 
 INSERT INTO `Veranstaltung` (`Preis`, `Einlass`, `PRTP_ID`, `Start_Wochentag`, `Start_Uhrzeit`, `Start_Datum`, `VETP_ID`, `VAOT_ID`) VALUES
@@ -493,6 +494,9 @@ ADD FOREIGN KEY (PRTP_ID) REFERENCES `Preis_Typ`(PRTP_ID);
 
 ALTER TABLE `Veranstaltung`
 ADD FOREIGN KEY (VETP_ID) REFERENCES `Veranstaltungs_Typ`(VETP_ID);
+
+ALTER TABLE `Veranstaltung`
+ADD FOREIGN KEY (GORT_ID) REFERENCES `Gueltiger_Ort`(GORT_ID);
 
 ALTER TABLE `Gueltieger_Ort`
 ADD FOREIGN KEY(BULA_ID) REFERENCES Bundesland(BULA_ID);
