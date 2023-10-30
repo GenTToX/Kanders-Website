@@ -279,7 +279,7 @@ CREATE TABLE `Festival`(
     `VERA_ID` int NOT NULL,
     `Ende_Datum` Date NOT NULL,
     `Ende_Uhrzeit` time NOT NUll,
-    `Ende_Wochentag` varchar( ) NOT NULL,
+    `Ende_Wochentag` varchar(10) NOT NULL,
   
     PRIMARY KEY (`VERA_ID`),
 
