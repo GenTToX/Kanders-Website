@@ -1,6 +1,6 @@
 # Festival & Concert Guide Germany
 
-This project is a school assignment being developed by students to acquire fundamental knowledge in Java, PHP, CSS, HTML, and SQL. Our aim is to create a website with a database where festivals and concerts in Germany can be displayed. What sets this project apart is the ability for users to add their own events.
+This project is a school assignment being developed by students to acquire fundamental knowledge in JavaScript, PHP, CSS, HTML, and MYSQL. Our aim is to create a website with a database where festivals and concerts in Germany can be displayed. What sets this project apart is the ability for users to add their own events.
 
 ## Features:
 - Display festivals and concerts across Germany.
