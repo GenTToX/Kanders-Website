@@ -119,7 +119,10 @@ UNIQUE (Bezeichnung)
 
 INSERT INTO `Preis_Typ` (`Bezeichnung`) VALUES
 ('Normal'),
+('kein preis gegeben'),
+('Eintritt frei'),
 ('Hutaktion');
+
 
 --
 --
@@ -136,7 +139,8 @@ UNIQUE (Bezeichnung)
 );
 
 INSERT INTO `Veranstaltungs_Typ`(`Bezeichnung`) VALUES
-('VeranstaltungsTyp');
+('Konzert'),
+('Festival');
 
 --
 --
@@ -153,7 +157,15 @@ UNIQUE (`Name`)
 );
 
 INSERT INTO `Veranstaltungsort` (`Name`) VALUES 
-('Schalander');
+('Mitsubishi-Halle'),
+('AKKA'),
+('Piano'),
+('Stadtschenke'),
+('Kump'),
+('Ablüh'),
+('Turbinenhalle'),
+('Rockmusikverein')
+('Westfalenhalle');
 
 --
 --
@@ -172,7 +184,14 @@ UNIQUE (`Name`)
 
 
 INSERT INTO `Stadt` (`Name`) VALUES
-('Unna');
+('Unna'),
+('Paderborn'),
+('Dortmund'),
+('Brilon'),
+('Masberg'),
+('Oberhausen'),
+('Salzkotten'),
+('Düsseldorf');
 
 
 
@@ -183,7 +202,6 @@ INSERT INTO `Stadt` (`Name`) VALUES
 CREATE TABLE `Stadtteil`(
   `STTL_ID` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(40) DEFAULT NULL,
-  `PLZ` int (5) DEFAULT NULL,
 
   PRIMARY KEY(`STTL_ID`),
 
@@ -191,8 +209,8 @@ CREATE TABLE `Stadtteil`(
 UNIQUE (`Name`)
 );
 
-INSERT INTO `Stadtteil` (`Name`, `PLZ`) VALUES
-('Unna', '5425');
+INSERT INTO `Stadtteil` (`Name`) VALUES
+('Unna');
 
 --
 --
@@ -211,6 +229,7 @@ UNIQUE (`Name`)
 INSERT INTO`Region` (`Name`) VALUES 
 ('Keine Ahnung');
 
+--.-- Hier muss noch die richtige region eingetragen werden für die gueltigen orte.
 --
 --
 --
@@ -228,7 +247,7 @@ UNIQUE (`Name`)
 
 INSERT INTO `Bundesland`(`Name`) VALUES
 ('NRW');
-
+--.-- Alle bundeländer müssen noch rausgefunden werden !!!
 --
 --
 --
@@ -300,6 +319,8 @@ CREATE TABLE `Festival_Name`(
     -- UNIQUE KEY
     UNIQUE (`Name`)
 );
+
+--.-- heir müssen die namen noch eingetragen werden !!!
 
 --
 --
@@ -380,7 +401,7 @@ CREATE TABLE `Gueltieger_Ort`(
     `BULA_ID` int NOT NULL
 );
 
-
+--.-- die orte müssen miteinander verknüpf weden !!!
 
 
 
@@ -409,7 +430,7 @@ PRIMARY KEY (`R_BVK_ID`),
 UNIQUE (RBIVBK_ID)
 );
 
-
+--.-- die sachen müssen miteinander verknüpf weden !!!
 
 
 CREATE TABLE `R_Band_tritt_auf_bei_Festival`(
@@ -427,7 +448,7 @@ UNIQUE (RTABF_ID)
 );
 
 
-
+--.-- die sachen müssen miteinander verknüpf weden !!!
 
 CREATE TABLE `R_Band_hat_Song`(
 `R_BHS_ID` int NOT NULL AUTO_INCREMENT,
@@ -437,7 +458,7 @@ CREATE TABLE `R_Band_hat_Song`(
 PRIMARY KEY(`R_BHS_ID`)
 );
 
-
+--.-- die sachen müssen miteinander verknüpf weden !!!
 
 
 CREATE TABLE `R_Musiker_spielt_in_Band`(
@@ -447,7 +468,7 @@ CREATE TABLE `R_Musiker_spielt_in_Band`(
 PRIMARY KEY (`R_MSB_ID`)
 );
 
-
+--.-- die sachen müssen miteinander verknüpf weden !!!
 
 -- --------------------------------------------------------------------------------------------
 
