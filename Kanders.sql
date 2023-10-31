@@ -150,7 +150,7 @@ CREATE TABLE `Veranstaltungsort` (
   `VAOT_ID` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(64) DEFAULT NULL,
 
- --.-- hier mus noch strassennamen Hausnummern und die plz rein !!!  `PLZ` int (5) DEFAULT NULL, 
+ ----- hier mus noch strassennamen Hausnummern und die plz rein !!!  `PLZ` int (5) DEFAULT NULL, 
   
   PRIMARY KEY (`VAOT_ID`),
 
@@ -231,7 +231,7 @@ UNIQUE (`Name`)
 INSERT INTO`Region` (`Name`) VALUES 
 ('Keine Ahnung');
 
---.-- Hier muss noch die richtige region eingetragen werden für die gueltigen orte.
+----- Hier muss noch die richtige region eingetragen werden für die gueltigen orte.
 --
 --
 --
@@ -249,7 +249,7 @@ UNIQUE (`Name`)
 
 INSERT INTO `Bundesland`(`Name`) VALUES
 ('NRW');
---.-- Alle bundeländer müssen noch rausgefunden werden !!!
+----- Alle bundeländer müssen noch rausgefunden werden !!!
 --
 --
 --
@@ -322,7 +322,7 @@ CREATE TABLE `Festival_Name`(
     UNIQUE (`Name`)
 );
 
---.-- heir müssen die namen noch eingetragen werden !!!
+----- heir müssen die namen noch eingetragen werden !!!
 
 --
 --
@@ -403,7 +403,7 @@ CREATE TABLE `Gueltieger_Ort`(
     `BULA_ID` int NOT NULL
 );
 
---.-- die orte müssen miteinander verknüpf weden !!!
+----- die orte müssen miteinander verknüpf weden !!!
 
 
 
@@ -432,7 +432,7 @@ PRIMARY KEY (`R_BVK_ID`),
 UNIQUE (RBIVBK_ID)
 );
 
---.-- die sachen müssen miteinander verknüpf weden !!!
+----- die sachen müssen miteinander verknüpf weden !!!
 
 
 CREATE TABLE `R_Band_tritt_auf_bei_Festival`(
@@ -450,7 +450,7 @@ UNIQUE (RTABF_ID)
 );
 
 
---.-- die sachen müssen miteinander verknüpf weden !!!
+----- die sachen müssen miteinander verknüpf weden !!!
 
 CREATE TABLE `R_Band_hat_Song`(
 `R_BHS_ID` int NOT NULL AUTO_INCREMENT,
@@ -460,7 +460,7 @@ CREATE TABLE `R_Band_hat_Song`(
 PRIMARY KEY(`R_BHS_ID`)
 );
 
---.-- die sachen müssen miteinander verknüpf weden !!!
+----- die sachen müssen miteinander verknüpf weden !!!
 
 
 CREATE TABLE `R_Musiker_spielt_in_Band`(
@@ -470,7 +470,7 @@ CREATE TABLE `R_Musiker_spielt_in_Band`(
 PRIMARY KEY (`R_MSB_ID`)
 );
 
---.-- die sachen müssen miteinander verknüpf weden !!!
+----- die sachen müssen miteinander verknüpf weden !!!
 
 -- --------------------------------------------------------------------------------------------
 
