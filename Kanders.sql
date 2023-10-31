@@ -96,15 +96,12 @@ CREATE TABLE `Veranstaltung` (
   -- FOREIGN KEY
   `PRTP_ID` int NOT NULL,
   `VETP_ID` int NOT NULL,
-  `BULA_ID` int NOT NULL,
-  `REGI_ID` int NOT NULL,
-  `STTL_ID` int NOT NULL,
-  `STDT_ID` int NOT NULL,
-  `VAOT_ID` int NOT NULL
+  `VAOT_ID` int NOT NULL,
+  `GORT_ID` int NOT NULL
 );
 
-INSERT INTO `Veranstaltung` (`Preis`, `Einlass`, `PRTP_ID`, `Start_Wochentag`, `Start_Uhrzeit`, `Start_Datum`, `VETP_ID`, `BULA_ID`, `REGI_ID`, `STTL_ID`, `STDT_ID`, `VAOT_ID`) VALUES
-('','19:02:00', 1, 'Sunday', '16:02:00', '2023-09-10', 1, 1, 1, 1, 1, 1);
+INSERT INTO `Veranstaltung` (`Preis`, `Einlass`, `PRTP_ID`, `Start_Wochentag`, `Start_Uhrzeit`, `Start_Datum`, `VETP_ID`, `VAOT_ID`) VALUES
+('','19:02:00', 1, 'Sunday', '16:02:00', '2023-09-10', 1, 1);
 
  --
  --
@@ -125,6 +122,7 @@ INSERT INTO `Preis_Typ` (`Bezeichnung`) VALUES
 ('kein preis gegeben'),
 ('Eintritt frei'),
 ('Hutaktion');
+
 
 --
 --
@@ -152,7 +150,7 @@ CREATE TABLE `Veranstaltungsort` (
   `VAOT_ID` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(64) DEFAULT NULL,
 
- ----- hier mus noch strassennamen Hausnummern und die plz rein !!!  `PLZ` int (5) DEFAULT NULL
+ --.-- hier mus noch strassennamen Hausnummern und die plz rein !!!  `PLZ` int (5) DEFAULT NULL, 
   
   PRIMARY KEY (`VAOT_ID`),
 
@@ -213,8 +211,8 @@ CREATE TABLE `Stadtteil`(
 UNIQUE (`Name`)
 );
 
-INSERT INTO `Stadtteil` (`Name`, `PLZ`) VALUES
-('Unna', '5425');
+INSERT INTO `Stadtteil` (`Name`) VALUES
+('Unna');
 
 --
 --
@@ -233,6 +231,7 @@ UNIQUE (`Name`)
 INSERT INTO`Region` (`Name`) VALUES 
 ('Keine Ahnung');
 
+--.-- Hier muss noch die richtige region eingetragen werden für die gueltigen orte.
 --
 --
 --
@@ -250,7 +249,7 @@ UNIQUE (`Name`)
 
 INSERT INTO `Bundesland`(`Name`) VALUES
 ('NRW');
-
+--.-- Alle bundeländer müssen noch rausgefunden werden !!!
 --
 --
 --
@@ -322,6 +321,8 @@ CREATE TABLE `Festival_Name`(
     -- UNIQUE KEY
     UNIQUE (`Name`)
 );
+
+--.-- heir müssen die namen noch eingetragen werden !!!
 
 --
 --
@@ -402,7 +403,7 @@ CREATE TABLE `Gueltieger_Ort`(
     `BULA_ID` int NOT NULL
 );
 
-
+--.-- die orte müssen miteinander verknüpf weden !!!
 
 
 
@@ -431,7 +432,7 @@ PRIMARY KEY (`R_BVK_ID`),
 UNIQUE (RBIVBK_ID)
 );
 
-
+--.-- die sachen müssen miteinander verknüpf weden !!!
 
 
 CREATE TABLE `R_Band_tritt_auf_bei_Festival`(
@@ -449,7 +450,7 @@ UNIQUE (RTABF_ID)
 );
 
 
-
+--.-- die sachen müssen miteinander verknüpf weden !!!
 
 CREATE TABLE `R_Band_hat_Song`(
 `R_BHS_ID` int NOT NULL AUTO_INCREMENT,
@@ -459,7 +460,7 @@ CREATE TABLE `R_Band_hat_Song`(
 PRIMARY KEY(`R_BHS_ID`)
 );
 
-
+--.-- die sachen müssen miteinander verknüpf weden !!!
 
 
 CREATE TABLE `R_Musiker_spielt_in_Band`(
@@ -469,7 +470,7 @@ CREATE TABLE `R_Musiker_spielt_in_Band`(
 PRIMARY KEY (`R_MSB_ID`)
 );
 
-
+--.-- die sachen müssen miteinander verknüpf weden !!!
 
 -- --------------------------------------------------------------------------------------------
 
@@ -516,6 +517,9 @@ ADD FOREIGN KEY (PRTP_ID) REFERENCES `Preis_Typ`(PRTP_ID);
 
 ALTER TABLE `Veranstaltung`
 ADD FOREIGN KEY (VETP_ID) REFERENCES `Veranstaltungs_Typ`(VETP_ID);
+
+ALTER TABLE `Veranstaltung`
+ADD FOREIGN KEY (GORT_ID) REFERENCES `Gueltiger_Ort`(GORT_ID);
 
 ALTER TABLE `Gueltieger_Ort`
 ADD FOREIGN KEY(BULA_ID) REFERENCES Bundesland(BULA_ID);
