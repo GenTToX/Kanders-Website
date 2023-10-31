@@ -42,6 +42,7 @@ CREATE TABLE `Mitglied` (
   `Hausummer` varchar(10) DEFAULT NULL,
   `Ort` varchar(26) DEFAULT NULL,
   `PLZ` varchar (5) DEFAULT NULL,
+  `Spitzname` varchar(64) DEFAULT NULL,
   
 -- FOREIGN KEY
   `ROLL_ID` int NOT NULL,
@@ -56,8 +57,8 @@ UNIQUE (Username)
 --
 --
 
-INSERT INTO `Mitglied` (`Username`, `Vorname`, `Nachname`, `Passwort`, `Geburtsdatum`, `Geschlecht`, `ROLL_ID`) VALUES
-('Maxinum', 'Maximilian', 'Bich', '916', '2006-02-09', 'Männlich', 1);
+INSERT INTO `Mitglied` (`Username`, `Vorname`, `Nachname`, `Passwort`, `Geburtsdatum`, `Geschlecht`, `ROLL_ID`, `E_Mail`, `Telefonnummer`, `Strasse`, `Hausummer`, `Ort`, `PLZ`, `Spitzname`) VALUES
+(`Maxinum916`, `Maxi`, `Bich`, `916`, `2006-02-09`, `Männlich`, `1`, `Maximilianbich10@gmail.com`, `+49 123 456789`, `Frankfurter Str`, 4, `UNNA`, `59425`, `Maxi`);
 
 --
 --
@@ -97,11 +98,15 @@ CREATE TABLE `Veranstaltung` (
   `PRTP_ID` int NOT NULL,
   `VETP_ID` int NOT NULL,
   `VAOT_ID` int NOT NULL,
-  `GORT_ID` int NOT NULL
+  `GORT_ID` int NOT NULL,
+  'MITG_ID' int NOT NULL
 );
 
-INSERT INTO `Veranstaltung` (`Preis`, `Einlass`, `PRTP_ID`, `Start_Wochentag`, `Start_Uhrzeit`, `Start_Datum`, `VETP_ID`, `VAOT_ID`) VALUES
-('','19:02:00', 1, 'Sunday', '16:02:00', '2023-09-10', 1, 1);
+INSERT INTO `Veranstaltung` (`Preis`, `Einlass`, `PRTP_ID`, `Start_Wochentag`, `Start_Uhrzeit`, `Start_Datum`, `VETP_ID`, `VAOT_ID`,  `GORT_ID`, 'MITG_ID') VALUES
+('12.50','19:02:00', 1, 'Sunday', '16:02:00', '2023-09-10', 1, 1, 1, 1);
+
+
+ -- --- hier mus noch sachen rein rein
 
  --
  --
@@ -149,8 +154,11 @@ INSERT INTO `Veranstaltungs_Typ`(`Bezeichnung`) VALUES
 CREATE TABLE `Veranstaltungsort` (
   `VAOT_ID` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(64) DEFAULT NULL,
+  `PLZ` varchar(64) DEFAULT NULL,
+  `Starasse` varchar(64) DEFAULT NULL,
+  `Hausnummer` varchar(64) DEFAULT NULL,
 
- --.-- hier mus noch strassennamen Hausnummern und die plz rein !!!  `PLZ` int (5) DEFAULT NULL, 
+ -- --- hier mus noch strassennamen Hausnummern und die plz rein   `PLZ` int (5) DEFAULT NULL, 
   
   PRIMARY KEY (`VAOT_ID`),
 
@@ -158,16 +166,16 @@ CREATE TABLE `Veranstaltungsort` (
 UNIQUE (`Name`)
 );
 
-INSERT INTO `Veranstaltungsort` (`Name`) VALUES 
-('Mitsubishi-Halle'),
-('AKKA'),
-('Piano'),
-('Stadtschenke'),
-('Kump'),
-('Ablüh'),
-('Turbinenhalle'),
-('Rockmusikverein')
-('Westfalenhalle');
+INSERT INTO `Veranstaltungsort` (`Name`, 'PLZ', 'Strasse', 'Hausnummer') VALUES 
+('Mitsubishi-Halle', NULL, NULL, NULL),
+('AKKA', NULL, NULL, NULL),
+('Piano', NULL, NULL, NULL),
+('Stadtschenke', NULL, NULL, NULL),
+('Kump', NULL, NULL, NULL),
+('Ablüh', NULL, NULL, NULL),
+('Turbinenhalle', NULL, NULL, NULL),
+('Rockmusikverein', NULL, NULL, NULL),
+('Westfalenhalle', NULL, NULL, NULL);
 
 --
 --
@@ -212,7 +220,7 @@ UNIQUE (`Name`)
 );
 
 INSERT INTO `Stadtteil` (`Name`) VALUES
-('Unna');
+('Westheim');
 
 --
 --
@@ -229,9 +237,9 @@ UNIQUE (`Name`)
 );
 
 INSERT INTO`Region` (`Name`) VALUES 
-('Keine Ahnung');
+(NULL);
 
---.-- Hier muss noch die richtige region eingetragen werden für die gueltigen orte.
+-- --- Hier muss noch die richtige region eingetragen werden für die gueltigen orte.
 --
 --
 --
@@ -248,8 +256,8 @@ UNIQUE (`Name`)
 
 
 INSERT INTO `Bundesland`(`Name`) VALUES
-('NRW');
---.-- Alle bundeländer müssen noch rausgefunden werden !!!
+(NULL);
+-- --- Alle bundeländer müssen noch rausgefunden werden !!!
 --
 --
 --
@@ -264,16 +272,32 @@ CREATE TABLE `Band` (
 UNIQUE (`Name`),
  
   -- FOREIGN KEY
-  `MURI_ID` int NOT NULL,
-  `MUSI_ID` int NOT NULL,
-  `SONG_ID` int NOT NULL
+  `MURI_ID` int NULL,
+  `MUSI_ID` int NULL,
+  `SONG_ID` int NULL
 );
 
 
-
+-- bezihungstabellen machen und das `MURI_ID` ,`MUSI_ID`, `SONG_ID` ändern
 
 INSERT INTO `Band` (`Name`,  `MURI_ID` ,`MUSI_ID`, `SONG_ID`) VALUES
-('Bring me the Horizon', 1, 1, 1);
+('Trivium', NULL, NULL, NULL),
+('Heaven Shall Burn', NULL, NULL, NULL),
+('Open Range', NULL, NULL, NULL),
+('Stairway To Heaven', NULL, NULL, NULL),;
+('Rock-Party', NULL, NULL, NULL),
+('Supersonic Baby', NULL, NULL, NULL),
+('Fido Plays Zappa', NULL, NULL, NULL),
+('Bad Moon', NULL, NULL, NULL),
+('Alle Außer Ich', NULL, NULL, NULL),
+('Markuz Walach', NULL, NULL, NULL),
+("Fiddler's Green", NULL, NULL, NULL),
+("Begbie's Pint", NULL, NULL, NULL)
+('Bukahara', NULL, NULL, NULL);
+
+
+-- " ' " testen und kanders sagen 
+
 
 --
 --
@@ -289,6 +313,9 @@ CREATE TABLE `Konzert`(
     `BAND_ID` int NOT NULL
 );
 
+
+INSERT INTO `Konzert` (`BAND_ID`) VALUES
+(1);
 --
 --
 --
@@ -309,6 +336,8 @@ CREATE TABLE `Festival`(
 
 );
 
+-- bEZIHUNGSTABELLE MACHEN und verknüpfen
+
 --
 --
 --
@@ -322,7 +351,11 @@ CREATE TABLE `Festival_Name`(
     UNIQUE (`Name`)
 );
 
---.-- heir müssen die namen noch eingetragen werden !!!
+
+INSERT INTO `Festival_Name` (`name`) VALUES
+('Noch nicht gegeben');
+
+-- --- hier müssen die namen noch eingetragen werden !!!
 
 --
 --
@@ -332,6 +365,7 @@ CREATE TABLE `Musiker` (
   `MUSI_ID` int NOT NULL AUTO_INCREMENT,
   `Vorname` varchar(40) DEFAULT NULL,
   `Nachname` varchar(40) DEFAULT NULL,
+  `Kuenstlername` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`MUSI_ID`),
 
 
@@ -339,8 +373,8 @@ CREATE TABLE `Musiker` (
   `BAND_ID` int NOT NULL
 );
 
-INSERT INTO `Musiker` (`Vorname`, `Nachname`, `BAND_ID`) VALUES
-('Maximilian', 'Bich',1);
+INSERT INTO `Musiker` (`Vorname`, `Nachname`, `BAND_ID`,`Kuenstlername` ) VALUES
+('Maximilian', 'Bich',1, NUll);
 
 --
 --
@@ -388,10 +422,6 @@ INSERT INTO `Musik_Richtung`(`Bezeichnung`, `BAND_ID`) VALUES
 
 CREATE TABLE `Gueltieger_Ort`(
     `GORT_ID` int NOT NULL AUTO_INCREMENT,
-    `Stadt` varchar(40) DEFAULT NULL,
-    `Stadtteil` varchar(40) DEFAULT NULL,
-    `Region` varchar(40) DEFAULT NULL,
-    `Bundesland` varchar(40) DEFAULT NULL,
 
     PRIMARY KEY(`GORT_ID`),
 
@@ -403,7 +433,7 @@ CREATE TABLE `Gueltieger_Ort`(
     `BULA_ID` int NOT NULL
 );
 
---.-- die orte müssen miteinander verknüpf weden !!!
+-- --- die orte müssen miteinander verknüpf weden !!!
 
 
 
@@ -432,7 +462,7 @@ PRIMARY KEY (`R_BVK_ID`),
 UNIQUE (RBIVBK_ID)
 );
 
---.-- die sachen müssen miteinander verknüpf weden !!!
+-- --- die sachen müssen miteinander verknüpf weden !!!
 
 
 CREATE TABLE `R_Band_tritt_auf_bei_Festival`(
@@ -450,7 +480,7 @@ UNIQUE (RTABF_ID)
 );
 
 
---.-- die sachen müssen miteinander verknüpf weden !!!
+-- --- die sachen müssen miteinander verknüpf weden !!!
 
 CREATE TABLE `R_Band_hat_Song`(
 `R_BHS_ID` int NOT NULL AUTO_INCREMENT,
@@ -460,7 +490,7 @@ CREATE TABLE `R_Band_hat_Song`(
 PRIMARY KEY(`R_BHS_ID`)
 );
 
---.-- die sachen müssen miteinander verknüpf weden !!!
+-- --- die sachen müssen miteinander verknüpf weden !!!
 
 
 CREATE TABLE `R_Musiker_spielt_in_Band`(
@@ -470,7 +500,23 @@ CREATE TABLE `R_Musiker_spielt_in_Band`(
 PRIMARY KEY (`R_MSB_ID`)
 );
 
---.-- die sachen müssen miteinander verknüpf weden !!!
+-- --- die sachen müssen miteinander verknüpf weden !!!
+
+
+
+
+
+CREATE TABLE `R_Band_ist_Vorgruppe_bei_Konzert`(
+`R_BVK_ID` int NOT NULL AUTO_INCREMENT,
+`RBIVBK_ID` int NOT NULL,
+`VERA_ID` int NOT NULL,
+`BAND_ID` int NOT NULL,
+ 
+PRIMARY KEY (`R_BVK_ID`),
+
+-- UNIQUE KEY
+UNIQUE (RBIVBK_ID)
+);
 
 -- --------------------------------------------------------------------------------------------
 
@@ -516,7 +562,10 @@ ALTER TABLE `Veranstaltung`
 ADD FOREIGN KEY (PRTP_ID) REFERENCES `Preis_Typ`(PRTP_ID);
 
 ALTER TABLE `Veranstaltung`
-ADD FOREIGN KEY (VETP_ID) REFERENCES `Veranstaltungs_Typ`(VETP_ID);
+ADD FOREIGN KEY (PRTP_ID) REFERENCES `Preis_Typ`(PRTP_ID);
+
+ALTER TABLE `Veranstaltung`
+ADD FOREIGN KEY (MITG_ID) REFERENCES `Mitglied`(MITG_ID);
 
 ALTER TABLE `Veranstaltung`
 ADD FOREIGN KEY (GORT_ID) REFERENCES `Gueltiger_Ort`(GORT_ID);
