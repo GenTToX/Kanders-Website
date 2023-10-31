@@ -122,6 +122,8 @@ UNIQUE (Bezeichnung)
 
 INSERT INTO `Preis_Typ` (`Bezeichnung`) VALUES
 ('Normal'),
+('kein preis gegeben'),
+('Eintritt frei'),
 ('Hutaktion');
 
 --
@@ -139,7 +141,8 @@ UNIQUE (Bezeichnung)
 );
 
 INSERT INTO `Veranstaltungs_Typ`(`Bezeichnung`) VALUES
-('VeranstaltungsTyp');
+('Konzert'),
+('Festival');
 
 --
 --
@@ -148,6 +151,8 @@ INSERT INTO `Veranstaltungs_Typ`(`Bezeichnung`) VALUES
 CREATE TABLE `Veranstaltungsort` (
   `VAOT_ID` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(64) DEFAULT NULL,
+
+ --.-- hier mus noch strassennamen Hausnummern und die plz rein !!!  `PLZ` int (5) DEFAULT NULL, 
   
   PRIMARY KEY (`VAOT_ID`),
 
@@ -156,7 +161,15 @@ UNIQUE (`Name`)
 );
 
 INSERT INTO `Veranstaltungsort` (`Name`) VALUES 
-('Schalander');
+('Mitsubishi-Halle'),
+('AKKA'),
+('Piano'),
+('Stadtschenke'),
+('Kump'),
+('Ablüh'),
+('Turbinenhalle'),
+('Rockmusikverein')
+('Westfalenhalle');
 
 --
 --
@@ -175,7 +188,14 @@ UNIQUE (`Name`)
 
 
 INSERT INTO `Stadt` (`Name`) VALUES
-('Unna');
+('Unna'),
+('Paderborn'),
+('Dortmund'),
+('Brilon'),
+('Masberg'),
+('Oberhausen'),
+('Salzkotten'),
+('Düsseldorf');
 
 
 
@@ -186,7 +206,6 @@ INSERT INTO `Stadt` (`Name`) VALUES
 CREATE TABLE `Stadtteil`(
   `STTL_ID` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(40) DEFAULT NULL,
-  `PLZ` int (5) DEFAULT NULL,
 
   PRIMARY KEY(`STTL_ID`),
 
@@ -498,16 +517,16 @@ ADD FOREIGN KEY (PRTP_ID) REFERENCES `Preis_Typ`(PRTP_ID);
 ALTER TABLE `Veranstaltung`
 ADD FOREIGN KEY (VETP_ID) REFERENCES `Veranstaltungs_Typ`(VETP_ID);
 
-ALTER TABLE `Veranstaltung`
+ALTER TABLE `Gueltieger_Ort`
 ADD FOREIGN KEY(BULA_ID) REFERENCES Bundesland(BULA_ID);
 
-ALTER TABLE `Veranstaltung`
+ALTER TABLE `Gueltieger_Ort`
 ADD FOREIGN KEY(REGI_ID) REFERENCES Region(REGI_ID);
 
-ALTER TABLE `Veranstaltung`
+ALTER TABLE `Gueltieger_Ort`
 ADD FOREIGN KEY(STTL_ID) REFERENCES Stadtteil(STTL_ID);
 
-ALTER TABLE `Veranstaltung`
+ALTER TABLE `Gueltieger_Ort`
 ADD FOREIGN KEY(STDT_ID) REFERENCES Stadt(STDT_ID);
 
 ALTER TABLE `Veranstaltung`
