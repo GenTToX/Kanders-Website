@@ -98,6 +98,7 @@ CREATE TABLE `Veranstaltung` (
   `PRTP_ID` int NOT NULL,
   `VETP_ID` int NOT NULL,
   `VAOT_ID` int NOT NULL,
+
   `GORT_ID` int NOT NULL,
   'MITG_ID' int NOT NULL
 );
@@ -166,6 +167,7 @@ CREATE TABLE `Veranstaltungsort` (
 UNIQUE (`Name`)
 );
 
+
 INSERT INTO `Veranstaltungsort` (`Name`, 'PLZ', 'Strasse', 'Hausnummer') VALUES 
 ('Mitsubishi-Halle', NULL, NULL, NULL),
 ('AKKA', NULL, NULL, NULL),
@@ -176,6 +178,7 @@ INSERT INTO `Veranstaltungsort` (`Name`, 'PLZ', 'Strasse', 'Hausnummer') VALUES
 ('Turbinenhalle', NULL, NULL, NULL),
 ('Rockmusikverein', NULL, NULL, NULL),
 ('Westfalenhalle', NULL, NULL, NULL);
+
 
 --
 --
@@ -220,7 +223,9 @@ UNIQUE (`Name`)
 );
 
 INSERT INTO `Stadtteil` (`Name`) VALUES
+
 ('Westheim');
+
 
 --
 --
@@ -256,7 +261,9 @@ UNIQUE (`Name`)
 
 
 INSERT INTO `Bundesland`(`Name`) VALUES
+
 (NULL);
+
 -- --- Alle bundeländer müssen noch rausgefunden werden !!!
 --
 --
@@ -352,10 +359,12 @@ CREATE TABLE `Festival_Name`(
 );
 
 
+
 INSERT INTO `Festival_Name` (`name`) VALUES
 ('Noch nicht gegeben');
 
 -- --- hier müssen die namen noch eingetragen werden !!!
+
 
 --
 --
@@ -504,8 +513,6 @@ PRIMARY KEY (`R_MSB_ID`)
 
 
 
-
-
 CREATE TABLE `R_Band_ist_Vorgruppe_bei_Konzert`(
 `R_BVK_ID` int NOT NULL AUTO_INCREMENT,
 `RBIVBK_ID` int NOT NULL,
@@ -566,6 +573,9 @@ ADD FOREIGN KEY (PRTP_ID) REFERENCES `Preis_Typ`(PRTP_ID);
 
 ALTER TABLE `Veranstaltung`
 ADD FOREIGN KEY (MITG_ID) REFERENCES `Mitglied`(MITG_ID);
+
+ALTER TABLE `Veranstaltung`
+ADD FOREIGN KEY (GORT_ID) REFERENCES `Gueltiger_Ort`(GORT_ID);
 
 ALTER TABLE `Veranstaltung`
 ADD FOREIGN KEY (GORT_ID) REFERENCES `Gueltiger_Ort`(GORT_ID);
