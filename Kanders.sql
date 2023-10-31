@@ -149,6 +149,8 @@ INSERT INTO `Veranstaltungs_Typ`(`Bezeichnung`) VALUES
 CREATE TABLE `Veranstaltungsort` (
   `VAOT_ID` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(64) DEFAULT NULL,
+
+ --.-- hier mus noch strassennamen Hausnummern und die plz rein !!!  `PLZ` int (5) DEFAULT NULL, 
   
   PRIMARY KEY (`VAOT_ID`),
 
